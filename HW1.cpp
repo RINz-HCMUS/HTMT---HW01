@@ -1,6 +1,5 @@
 // A. Writeaprogram
 
-
 #include <iostream>
 #include <string.h>
 #include <bitset>
