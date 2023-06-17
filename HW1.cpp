@@ -1,9 +1,12 @@
+// A. Writeaprogram
+
+
 #include <iostream>
 #include <string.h>
 #include <bitset>
 
 using namespace std;
-
+// A.1 and A.2:
 void ConvertSignedIntegerTo2sComplement(){
     int x;
     cout << "Input a signed integer X: ";
@@ -47,7 +50,8 @@ void ConvertSignedIntegerTo2sComplement(){
         }
     }    
 
-    cout << "\nThe binary bit pattern of X(2s complement form): ";
+    cout << "The binary bit pattern of X(2s complement form): ";
+
     for(int i = 15; i >= 0; i--)
         cout << a[i];
 
@@ -55,7 +59,7 @@ void ConvertSignedIntegerTo2sComplement(){
     return;
 }
 
-
+// A3 and A4:
 int ConvertBinaryToDecimal(string s){
     int tmp = 1;
     int num = 0;
@@ -86,7 +90,7 @@ void ConvertSinglePrecisionToDecimal(){
     cout << "Input a single precision Y (binary bit pattern): ";
     getline(cin, y);
 
-    if(y.size() < 31){
+    if(y.size() != 32){
         cout << "Invalid value. Try again!\n";
         return;
     }
@@ -143,40 +147,39 @@ void ConvertSinglePrecisionToBinary(){
 }
 
 int main(){
-    cout << "A. Program to adopt these requirements:\n";
-    cout << "-------------------------------------------------------------------------------------\n";
-        cout << "Press 1 to Convert a signed integer to 2's Complement form.\n";
-        cout << "Press 2 to Convert a single precision (floating-point number) to Binary bit pattern.\n";
-        cout << "Press 3 to Convert a single precision (binary bit pattern) to floating-point number.\n";
-        cout << "Press 0 to Exit\nYour choose: "; 
-
     int x;
-    cin >> x;
-    cin.ignore();
-    switch(x){
-        case 1:{
-            ConvertSignedIntegerTo2sComplement();
-        }
-        case 2:{
-            ConvertSinglePrecisionToBinary();
-        }
-        case 3:{
-            ConvertSinglePrecisionToDecimal();
-        }
-        case 0:{
-            break;
-        }
-        default:{
-            cout << "Invalid. Try again!\n";
-        }
+    cout << "A. Program to adopt these requirements:\n";
+        cout << "-------------------------------------------------------------------------------------\n";
+    while(true){
         cout << "-------------------------------------------------------------------------------------\n";
         cout << "Press 1 to Convert a signed integer to 2's Complement form.\n";
         cout << "Press 2 to Convert a single precision (floating-point number) to Binary bit pattern.\n";
         cout << "Press 3 to Convert a single precision (binary bit pattern) to floating-point number.\n";
         cout << "Press 0 to Exit\nYour choose: "; 
-        cin.ignore();
+
         cin >> x;
-        cin.ignore();  
+        cin.ignore();
+    
+        if(x == 1){
+            ConvertSignedIntegerTo2sComplement();
+            cin.ignore();
+        }
+        else if(x == 2){
+            ConvertSinglePrecisionToBinary();
+            cin.ignore();
+        }
+        
+        else if(x == 3){
+            ConvertSinglePrecisionToDecimal();
+            cin.ignore();
+        }
+        else if(x == 0){
+            break;
+        }
+        
+        else
+            cout << "Invalid. Try again!\n";
+
     }
 
   return 0;  
