@@ -1,10 +1,11 @@
-#include <iostream>
-#include <string.h>
-#include <bitset>
-
 // HCMUS - He thong may tinh - HW01
 // Vo Huu Tuan
 // github: RINz-HCMUS
+
+
+#include <iostream>
+#include <string.h>
+#include <bitset>
 
 using namespace std;
 
