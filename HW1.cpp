@@ -1,10 +1,13 @@
-// A. Writeaprogram
-
 #include <iostream>
 #include <string.h>
 #include <bitset>
 
+// HCMUS - He thong may tinh - HW01
+// Vo Huu Tuan
+// github: RINz-HCMUS
+
 using namespace std;
+
 // A.1 and A.2:
 void ConvertSignedIntegerTo2sComplement(){
     int x;
@@ -59,9 +62,22 @@ void ConvertSignedIntegerTo2sComplement(){
 }
 
 // A3 and A4:
+void ConvertSinglePrecisionToBinary(){
+    float y;
+    
+    cout << "Input a single precision Y (floating-point number): ";
+    cin >> y;
+
+    bitset<32> binaryPattern(*reinterpret_cast<unsigned int*>(&y));
+
+    cout << "Binary bit pattern of Y: " << binaryPattern << endl;
+
+    return;
+}
+
 int ConvertBinaryToDecimal(string s){
-    int tmp = 1;
-    int num = 0;
+    int tmp = 1, num = 0;
+
     for(int i = s.size() - 1; i >= 0; i--){
         if(s[i] == '1')
             num += tmp;
@@ -74,6 +90,7 @@ int ConvertBinaryToDecimal(string s){
 
 float ConvertFractionBinaryToDecimal(string s){
     float tmp = 1, frac = 0;
+
     for(int i = 0; i < s.size(); i++){
         tmp /= 2;
         if(s[i] == '1')
@@ -82,6 +99,28 @@ float ConvertFractionBinaryToDecimal(string s){
 
     return frac;
 }
+
+bool check(string Ex, string Si){
+    if(ConvertBinaryToDecimal(Ex) == 0 && ConvertFractionBinaryToDecimal(Si) != 0.0){
+        cout << "So khong the chuan hoa (Denormalized)" << endl;
+        return true;
+    }
+    
+    if(Ex == "11111111"){
+        if(ConvertFractionBinaryToDecimal(Si) == 0.0){
+            cout << "Infinity!" << endl;
+            return true;
+        }
+        else{
+            cout << "NaN - Not a Number" << endl;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 
 void ConvertSinglePrecisionToDecimal(){
     string y;
@@ -107,7 +146,8 @@ void ConvertSinglePrecisionToDecimal(){
     int E = ConvertBinaryToDecimal(Exponent) - K;
     Significand += y.substr(9, 23);
     
-    
+    if(check(Exponent, Significand))
+        return;
 
     int index;
     for(int i = 0; i < Significand.size(); i++)
@@ -130,17 +170,6 @@ void ConvertSinglePrecisionToDecimal(){
     cout << "Significand: " << Significand << endl; 
     cout << "Fixed point number: " << integerPart << "." << fractionPart << endl;     
     cout << "Decimal value: " << fixed << number << endl;
-    return;
-}
-
-void ConvertSinglePrecisionToBinary(){
-    float y;
-    cout << "Input a single precision Y (floating-point number): ";
-    cin >> y;
-
-    bitset<32> binaryPattern(*reinterpret_cast<unsigned int*>(&y));
-
-    cout << "Binary bit pattern of Y: " << binaryPattern << endl;
 
     return;
 }
@@ -149,6 +178,7 @@ int main(){
     int x;
     cout << "A. Program to adopt these requirements:\n";
         cout << "-------------------------------------------------------------------------------------\n";
+    
     while(true){
         cout << "-------------------------------------------------------------------------------------\n";
         cout << "Press 1 to Convert a signed integer to 2's Complement form.\n";
