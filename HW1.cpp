@@ -2,7 +2,6 @@
 // Vo Huu Tuan
 // github: RINz-HCMUS
 
-
 #include <iostream>
 #include <string.h>
 #include <bitset>
